@@ -1,0 +1,73 @@
+*{
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+body{
+    background-color: goldenrod;
+    height: 100%vh;
+    width: 100%vw;
+}
+.container{
+    width: 60%;
+    margin: auto;
+    height: 500px;
+    border: double 5px black;
+    border-radius: 5px;
+    background-color: brown;
+    position: relative;
+    top: 120px;
+    padding-top: 50px;
+
+}
+.header-text h1{
+    text-align: center;
+    font-family: cursive;
+    font-size: 50px;
+    color: honeydew;
+}
+.text-area{
+    display: flex;
+    justify-content: center;
+    
+}
+.text-area textarea {
+    width: 100%;
+    height: 200px;
+    max-height: 200px;
+    min-height: 200px;
+    max-width: 80%;
+    min-width:80%;
+    margin-top: 70px;
+    margin-left:10px ;
+    margin-right: 10px;
+    padding: 15px;
+    outline: black 2px solid;
+
+    
+}
+
+.buttons{
+    width: 80%;
+    margin: auto;
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+
+}
+.buttons button{
+    width: 150px;
+    padding: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    background-color:goldenrod;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    cursor: pointer; 
+}
+.buttons button:hover{
+    border: solid 5px;
+    transition: 1s;
+    
+} 

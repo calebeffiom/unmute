@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+        padding: 0;
+        margin: 0;
+        border: 0;
+    }
+    body{
+        background-color: goldenrod;
+        height: 100vh;
+        width: 100vw;
+    }
+    .container{
+        width: 80vw;
+        margin: auto;
+        height: 60vh;
+        border: double 5px black;
+        border-radius: 5px;
+        background-color: brown;
+        position: relative;
+        top: 120px;
+        padding-top: 50px;
+    
+    }
+    .header-text h1{
+        text-align: center;
+        font-family: cursive;
+        font-size: 50px;
+        color: honeydew;
+    }
+    .text-area{
+        display: flex;
+        justify-content: center;
+        
+    }
+    .text-area textarea {
+        width: 100%;
+        height: 200px;
+        max-height: 200px;
+        min-height: 200px;
+        max-width: 80%;
+        min-width:80%;
+        margin-top: 70px;
+        margin-left:10px ;
+        margin-right: 10px;
+        padding: 15px;
+        outline: black 2px solid;
+    
+        
+    }
+    
+    .buttons{
+        width: 80%;
+        margin: auto;
+        margin-top: 50px;
+        display: flex;
+        justify-content: space-evenly;
+        margin-bottom: 20px;
+    
+    }
+    .buttons button{
+        width: 150px;
+        padding: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+        border-radius: 5px;
+        background-color:goldenrod;
+        cursor: pointer; 
+    }
+    .buttons button p{
+        text-align: center;
+        font-family: cursive;
+        font-size: 20px;
+    }
+    .buttons button:hover{
+        border: solid 5px;
+        transition: 1s;
+        
+    } 
+</style>
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+
+   
+</head>
+
+
+
+<body>
+    <div class="container">   
+        <div class="header-text">
+            <h1>Unmute</h1>
+        </div>
+    
+        <div class="text-area">
+            <textarea placeholder="input text here"></textarea>
+        </div>
+        <div class="buttons">
+            <button><p>speak</p></button>
+        </div>
+    </div>
+
+
+
+    <script>
+    const textarea = document.querySelector("textarea"),
+        speechBtn = document.querySelector("button");
+        
+        function textTospeech(text){
+            let utterance= new SpeechSynthesisUtterance(text);
+            speechSynthesis.speak(utterance);
+        }
+        
+        speechBtn.addEventListener("click",e =>{
+            e.preventDefault();
+            if(textarea.value !== ""){
+                textTospeech(textarea.value);
+            }
+        });
+        </script>
+    
+</body>
+</html>
