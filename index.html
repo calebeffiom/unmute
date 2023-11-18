@@ -13,6 +13,7 @@
     }
     body{
         background-color: goldenrod;
+        display: flex;
         height: 100vh;
         width: 100vw;
     }
@@ -23,8 +24,8 @@
         border: double 5px black;
         border-radius: 5px;
         background-color: brown;
-        position: relative;
-        top: 120px;
+        /* position: relative;
+        top: 120px; */
         padding-top: 50px;
     
     }
@@ -46,7 +47,7 @@
         min-height: 200px;
         max-width: 80%;
         min-width:80%;
-        margin-top: 70px;
+        margin-top: 50px;
         margin-left:10px ;
         margin-right: 10px;
         padding: 15px;
@@ -58,7 +59,7 @@
     .buttons{
         width: 80%;
         margin: auto;
-        margin-top: 50px;
+        margin-top: 20px;
         display: flex;
         justify-content: space-evenly;
         margin-bottom: 20px;
@@ -78,14 +79,15 @@
         font-family: cursive;
         font-size: 20px;
     }
-    .buttons button:hover{
-        border: solid 5px;
-        transition: 1s;
-        
-    } 
+    @media (max-height: 670px) {
+        .container{
+            padding-bottom: 50px;
+        }
+    }
+    
 </style>
-    <!-- <link rel="stylesheet" href="css/style.css"> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
    
 </head>
@@ -99,31 +101,53 @@
         </div>
     
         <div class="text-area">
-            <textarea placeholder="input text here"></textarea>
+            <textarea placeholder="input text here" id="inputText"></textarea>
         </div>
         <div class="buttons">
-            <button><p>speak</p></button>
+            <button id="speakButton"><p>speak</p></button>
         </div>
     </div>
 
 
 
-    <script>
-    const textarea = document.querySelector("textarea"),
-        speechBtn = document.querySelector("button");
-        
-        function textTospeech(text){
-            let utterance= new SpeechSynthesisUtterance(text);
-            speechSynthesis.speak(utterance);
-        }
-        
-        speechBtn.addEventListener("click",e =>{
-            e.preventDefault();
-            if(textarea.value !== ""){
-                textTospeech(textarea.value);
-            }
-        });
-        </script>
+   
+        <script>
+        document.addEventListener('DOMContentLoaded', function () {
+                const url = 'https://voicerss-text-to-speech.p.rapidapi.com/?key=6fe7d96fd62d423b89337fb151e3bb47';
+            
+                document.getElementById('speakButton').addEventListener('click', function () {
+                    const textToSpeak = document.getElementById('inputText').value;
+            
+                    const options = {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                            'X-RapidAPI-Key': '1b2cc33427msh0b8b0593ceba5c6p1a5d78jsn0a03004a58d4',
+                            'X-RapidAPI-Host': 'voicerss-text-to-speech.p.rapidapi.com'
+                        },
+                        body: new URLSearchParams({
+                            src: textToSpeak,
+                            hl: 'en-us',
+                            r: '0',
+                            c: 'mp3',
+                            f: '8khz_8bit_mono'
+                        })
+                    };
+            
+                    fetch(url, options)
+                        .then(response => response.blob())
+                        .then(blob => {
+                            const audio = new Audio();
+                            const objectURL = URL.createObjectURL(blob);
+                            audio.src = objectURL;
+                            audio.play();
+                        })
+                        .catch((err) => {
+                            console.log(err.message);
+                        });
+                });
+            });
+            </script>
     
 </body>
 </html>
